@@ -74,30 +74,23 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<h2 id="title-Drools-6官方文档-1"><a href="#title-Drools-6官方文档-1" class="headerlink" title="title: Drools 6官方文档 1"></a>title: Drools 6官方文档 1</h2><p>#Drools 6官方文档 1#</p>
-<p>##1 总体介绍##</p>
-<p>###1.1 介绍###<br>　　这是一个繁忙的一年，因为最后的5.x版本发布后，6.0版本发生了大量的变化。</p>
+<h2 id="title-Drools-6官方文档-1"><a href="#title-Drools-6官方文档-1" class="headerlink" title="title: Drools 6官方文档 1"></a>title: Drools 6官方文档 1</h2><p>#Drools 6官方文档 1</p>
+<h2 id="1-总体介绍"><a href="#1-总体介绍" class="headerlink" title="1 总体介绍"></a>1 总体介绍</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>　　这是一个繁忙的一年，因为最后的5.x版本发布后，6.0版本发生了大量的变化。</p>
 <p>　　在5．X系列的最大的抱怨之一是缺乏简单的部署方法。使用Drools和JBPM的机制是非常灵活的，但它太灵活，以至于反而有些复杂。6.x的一个重要的方面就是是简化系统的构建、部署和加载等方面复杂度。构建和部署使用Maven,使用约定和配置取代编程方式，并提供默认的完整的最小化配置。</p>
 <p>　　工作台（workbench）已经重建，受到Eclipse的启发，通过插件（plugin）和视图（perspectives）等方式，提供一个灵活的更好的集成解决方案。基本的工作台已经分拆成一个叫做uberfire独立的项目，所以任何人都可以建立高质量的基于Web的工作平台。从长期来看这将便于用户定制的Drools和JBPM的安装。</p>
 <p>　　Git的替代JCR作为内容存储库，提供了快速的可伸缩的后端内容存储，并且拥有强大的工具支持。近一个时期以来，内容存储从简单的数据库转移聚焦到存储一切文本文件，甚至元数据只是一个文件。数据库是只是为了提供快速索引，并通过Lucene搜索。这将使内容仓库可以进行同步并发布，比如发布到GitHub等。</p>
 <p>　　jBPM的有了极大的加强了，这要归功对Polymita收购，任务，表单设计器，对象建模，执行服务器和运行管理等都完全融入新的工作台。</p>
 <p>　　OptaPlanner现在是一个顶级项目，并获得全职的关注。</p>
 <p>　　在一个新的总称，KIE（Knowledge Is Everything　知识就是一切）之下，已经将我们的相关技术结合在一起。并且成为我们各个项目的核心。让我们拭目以待。</p>
-<p>###1.2 如何参与项目###<br>　　我们经常被问“我如何参与进来。”幸运的是，答案很简单，只写一些代码，并提交吧:)，没有其他的特殊要求。下面是我们提供的工具的概述和“工作流程”，还有一些一些一般性的建议。</p>
+<h3 id="1-2-如何参与项目"><a href="#1-2-如何参与项目" class="headerlink" title="1.2 如何参与项目"></a>1.2 如何参与项目</h3><p>　　我们经常被问“我如何参与进来。”幸运的是，答案很简单，只写一些代码，并提交吧:)，没有其他的特殊要求。下面是我们提供的工具的概述和“工作流程”，还有一些一些一般性的建议。</p>
 <p>　　如果你贡献了很好的工作，不要忘记发布在博客吧:)</p>
-<p>####1.2.1 在jboss.org上注册用户####<br>　　在Jboss.org上注册用户，你就可以访问JBoss Wiki，论坛以及JIRA ，请到<a href="http://www.jboss.org/" target="_blank" rel="external">http://www.jboss.org/</a> 点击注册。</p>
-<p>####1.2.2 签署贡献者协议####</p>
-<p>####1.2.3 通过JIRA提交问题####</p>
-<p>####1.2.4 在GitHub上Fork代码####</p>
-<p>####1.2.5 编写测试####<br>　　在编写测试时，尽量使他们最小化的，自包含的。我们宁愿保持测试中的DRL片段，它能够被快速审查。使用一个字符串表达大量的规则是不切实际的，应该把他们编写在多个分离的DRL文件中，如果你的测试需要模型对象，请使用在其他测试中已经存在的模型对象，比如人、奶酪、订单等，如果已经存在的模型对象无法满足你的需要，请优先考虑扩展已有的模型对象，最后才是添加新的模型对象。</p>
+<h4 id="1-2-1-在jboss-org上注册用户"><a href="#1-2-1-在jboss-org上注册用户" class="headerlink" title="1.2.1 在jboss.org上注册用户"></a>1.2.1 在jboss.org上注册用户</h4><p>　　在Jboss.org上注册用户，你就可以访问JBoss Wiki，论坛以及JIRA ，请到<a href="http://www.jboss.org/" target="_blank" rel="external">http://www.jboss.org/</a> 点击注册。</p>
+<h4 id="1-2-2-签署贡献者协议"><a href="#1-2-2-签署贡献者协议" class="headerlink" title="1.2.2 签署贡献者协议"></a>1.2.2 签署贡献者协议</h4><h4 id="1-2-3-通过JIRA提交问题"><a href="#1-2-3-通过JIRA提交问题" class="headerlink" title="1.2.3 通过JIRA提交问题"></a>1.2.3 通过JIRA提交问题</h4><h4 id="1-2-4-在GitHub上Fork代码"><a href="#1-2-4-在GitHub上Fork代码" class="headerlink" title="1.2.4 在GitHub上Fork代码"></a>1.2.4 在GitHub上Fork代码</h4><h4 id="1-2-5-编写测试"><a href="#1-2-5-编写测试" class="headerlink" title="1.2.5 编写测试"></a>1.2.5 编写测试</h4><p>　　在编写测试时，尽量使他们最小化的，自包含的。我们宁愿保持测试中的DRL片段，它能够被快速审查。使用一个字符串表达大量的规则是不切实际的，应该把他们编写在多个分离的DRL文件中，如果你的测试需要模型对象，请使用在其他测试中已经存在的模型对象，比如人、奶酪、订单等，如果已经存在的模型对象无法满足你的需要，请优先考虑扩展已有的模型对象，最后才是添加新的模型对象。</p>
 <p>　　MiscTest上提供了大量的测试，通过其或许你可以获得一些灵感。　　<br>　　下边是一个测试样例　　<br>　　<a href="https://github.com/droolsjbpm/drools/blob/master/drools-compiler/src/test/java/org/drools/integrationtests/MiscTest.java" target="_blank" rel="external">https://github.com/droolsjbpm/drools/blob/master/drools-compiler/src/test/java/org/drools/integrationtests/MiscTest.java</a><br>　<img src="https://cloud.githubusercontent.com/assets/4536249/16712186/980783de-46b1-11e6-9f1c-feb7b2e86dd5.png" alt=""></p>
-<p>####1.2.6 用正确的提交约定#####</p>
-<p>####1.2.7 提交Pull请求####</p>
-<p>###1.3安装###</p>
-<p>####1.3.1安装和使用####<br>　　Drools提供基于Eclipse的IDE(当然这个是可选的)，而且在Java1.5上即可运行。<br>　　开始的最简单方法是下载和安装Eclipse插件， 这首先需要安装了Eclipse GEF框架（见下文，如果你还没有安装GEF）。这个插件可以为你解决所有的依赖问题，你可以方便地创建规则项目，插件可以为你完成相关的所有事情，相关内容请参看规则工作台和IDE，安装插件只需要下载插件压缩文件，并解压到Eclise的plugins目录下。<br>这将为你提供你需要得到持续的所有依赖：你可以简单地创建一个新的规则项目，一切都会为你完成。请参阅有关规则工作台和IDE查找有关此详细说明的章节。安装Eclipse插件通常作为解压文件到你的Eclipse插件目录。</p>
+<h4 id="1-2-6-用正确的提交约定"><a href="#1-2-6-用正确的提交约定" class="headerlink" title="1.2.6 用正确的提交约定"></a>1.2.6 用正确的提交约定</h4><h4 id="1-2-7-提交Pull请求"><a href="#1-2-7-提交Pull请求" class="headerlink" title="1.2.7 提交Pull请求"></a>1.2.7 提交Pull请求</h4><h3 id="1-3安装"><a href="#1-3安装" class="headerlink" title="1.3安装"></a>1.3安装</h3><h4 id="1-3-1安装和使用"><a href="#1-3-1安装和使用" class="headerlink" title="1.3.1安装和使用"></a>1.3.1安装和使用</h4><p>　　Drools提供基于Eclipse的IDE(当然这个是可选的)，而且在Java1.5上即可运行。<br>　　开始的最简单方法是下载和安装Eclipse插件， 这首先需要安装了Eclipse GEF框架（见下文，如果你还没有安装GEF）。这个插件可以为你解决所有的依赖问题，你可以方便地创建规则项目，插件可以为你完成相关的所有事情，相关内容请参看规则工作台和IDE，安装插件只需要下载插件压缩文件，并解压到Eclise的plugins目录下。<br>这将为你提供你需要得到持续的所有依赖：你可以简单地创建一个新的规则项目，一切都会为你完成。请参阅有关规则工作台和IDE查找有关此详细说明的章节。安装Eclipse插件通常作为解压文件到你的Eclipse插件目录。</p>
 <p>　　使用Eclipse插件并不是必需的。规则文件只是文本格式（或电子表格视情况而定），而IDE（也称为规则工作台）仅仅是为了方便。可以使用各种方法集成规则引擎，不存在一刀切的方法。</p>
 <p>　　或者，你可以下载二进制发行版，并且将其中的Jar文件加入到你的项目的classpath中。</p>
-<p>#####1.3.1.1 Drools的Jar以及依赖#####<br>　　Drools中被分解成几个模块，有些模块是规则开发/编译期间所需的，有些是在运行时必需的。在许多情况下，人们只是想包括在运行时所有的依赖，而不包括开发／编译模块。drools这样分解模块，可以让你有最大的灵活性。不过，有些人可能更喜欢有自己的“运行环境”精简到最低限度，他们会以二进制形式部署规则，这也是可能的。核心运行时间引擎可以是相当紧凑，而且只需要跨3JAR文件数100千字节。</p>
+<h5 id="1-3-1-1-Drools的Jar以及依赖"><a href="#1-3-1-1-Drools的Jar以及依赖" class="headerlink" title="1.3.1.1 Drools的Jar以及依赖"></a>1.3.1.1 Drools的Jar以及依赖</h5><p>　　Drools中被分解成几个模块，有些模块是规则开发/编译期间所需的，有些是在运行时必需的。在许多情况下，人们只是想包括在运行时所有的依赖，而不包括开发／编译模块。drools这样分解模块，可以让你有最大的灵活性。不过，有些人可能更喜欢有自己的“运行环境”精简到最低限度，他们会以二进制形式部署规则，这也是可能的。核心运行时间引擎可以是相当紧凑，而且只需要跨3JAR文件数100千字节。</p>
 <p>  以下是JBoss Drools的重要库的说明。</p>
 <p>　　knowledge-api.jar　提供接口定义和工厂。它还有助于清楚地表明了什么是用户API和什么是引擎API。</p>
 <p>　　knowledge-internal-api.jar　提供内部接口和工厂。</p>
@@ -106,8 +99,7 @@
 <p>　　drools-decisiontables.jar　这是决策表“编译”组件，它使用Drools的编译器组件，支持Excel和CSV输入格式。<br>　　<br>　　上面这些组件还依赖相当多的其他组件，其中大部分drools-compiler.jar，drools-jsr94.jar和drools-decisiontables.jar的依赖。比如“POI”提供电子表格的解析能力，而“ANTLR”，提供规则语言自身的解析能力。</p>
 <p>　　如果你在J2EE或servlet容器中使用Drools，你遇到“JDT”的classpath问题，那么你可以切换到JANINO编译器。设置系统属性“drools.compiler”：例如：-Ddrools.compiler= JANINO。</p>
 <p>　　要想了解最新release版本的依赖，可以查看Release的POM文件，这个文件可以在Maven仓库中找到。</p>
-<p>#####1.3.1.2使用Maven、Gladle、Ivy、Buildr和Ant#####</p>
-<p>　　这些Jar已经发布到Maven的中心仓库中（the central Maven repository）， 在the JBoss Maven repository也可以找到。<br>　　<br>　　如果你使用Maven，可以在你的项目pom.xml添加KIE和Drools依赖如下：</p>
+<h5 id="1-3-1-2使用Maven、Gladle、Ivy、Buildr和Ant"><a href="#1-3-1-2使用Maven、Gladle、Ivy、Buildr和Ant" class="headerlink" title="1.3.1.2使用Maven、Gladle、Ivy、Buildr和Ant"></a>1.3.1.2使用Maven、Gladle、Ivy、Buildr和Ant</h5><p>　　这些Jar已经发布到Maven的中心仓库中（the central Maven repository）， 在the JBoss Maven repository也可以找到。<br>　　<br>　　如果你使用Maven，可以在你的项目pom.xml添加KIE和Drools依赖如下：</p>
 <pre><code>&lt;dependencyManagement&gt;
     &lt;dependencies&gt;
       &lt;dependency&gt;
@@ -133,16 +125,14 @@
     ...
   &lt;dependencies&gt;
 </code></pre><p>　　Gradle, Ivy和Buildr的方法与此相似，要查看最新的版本，请检查Maven仓库。<br>　　<br>　　如果你还在使用Ant（不使用ivy），解压并复制下载的zip中二进制文件目录中所有的JAR文件并手动检查您的CLASSPATH不包含重复的JAR文件。</p>
-<p>#####1.3.1.3运行时#####</p>
-<p>　　这里所说的“运行时”是指你使用编译好的二进制形式（无论是KnowledgePackage对象或KnowledgeBase对象）发布规则。这是一个可选功能，可以让你保持你的运行时很轻。您可以使用Drools的编译器先编译产生规则包，然后将它们部署到运行系统。这个运行时系统只需要的drools-core.jar和knowledge-api.jar，用于执行。这是一个可选的部署模式，许多人并不需要这样“调整”自己的应用程序，但它是在某些特定环境下的理想选择。</p>
-<p>#####1.3.1.4安装IDE (规则工作台)#####<br>　　规则工作台（用于Eclipse）要求您使用Eclipse的3.4或更高版本，以及Eclipse　GEF　3.4或更高版本。你可以通过下载插件或使用更新站点安装它。</p>
+<h5 id="1-3-1-3运行时"><a href="#1-3-1-3运行时" class="headerlink" title="1.3.1.3运行时"></a>1.3.1.3运行时</h5><p>　　这里所说的“运行时”是指你使用编译好的二进制形式（无论是KnowledgePackage对象或KnowledgeBase对象）发布规则。这是一个可选功能，可以让你保持你的运行时很轻。您可以使用Drools的编译器先编译产生规则包，然后将它们部署到运行系统。这个运行时系统只需要的drools-core.jar和knowledge-api.jar，用于执行。这是一个可选的部署模式，许多人并不需要这样“调整”自己的应用程序，但它是在某些特定环境下的理想选择。</p>
+<h5 id="1-3-1-4安装IDE-规则工作台"><a href="#1-3-1-4安装IDE-规则工作台" class="headerlink" title="1.3.1.4安装IDE (规则工作台)"></a>1.3.1.4安装IDE (规则工作台)</h5><p>　　规则工作台（用于Eclipse）要求您使用Eclipse的3.4或更高版本，以及Eclipse　GEF　3.4或更高版本。你可以通过下载插件或使用更新站点安装它。</p>
 <p>　　另一种选择是使用JBoss的IDE，它配备了所有插件要求预包装。</p>
-<p>######1.3.1.4.1 安装GEF######</p>
-
+<h6 id="1-3-1-4-1-安装GEF"><a href="#1-3-1-4-1-安装GEF" class="headerlink" title="1.3.1.4.1 安装GEF"></a>1.3.1.4.1 安装GEF</h6>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/10/Drools6官方文档1/" data-id="ciqgr3h6m0000lkks9viqww8t" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2016/07/10/Drools6官方文档1/" data-id="ciqgr8cs20001lwksitzk7212" class="article-share-link">Share</a>
       
       
     </footer>
@@ -187,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/09/hello-world/" data-id="ciqgr3h700002lkkslm3hq1j5" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2016/07/09/hello-world/" data-id="ciqgr8cse0004lwksqgbswmo3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,11 +213,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>#Test#</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2014/03/03/使用Hexo搭建个人博客/" data-id="ciqgr3h6w0001lkks4bjb1dv6" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2014/03/03/使用Hexo搭建个人博客/" data-id="ciqgr8cry0000lwksgpdlfq8e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
