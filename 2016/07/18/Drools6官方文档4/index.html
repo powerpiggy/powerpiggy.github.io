@@ -5,12 +5,50 @@
   
   <title>PowerPiggy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="title: Drools 6官方文档 4date: 2016-07-10 19:07:43
+description: 学习drools6 顺便翻译，英语很不好，翻译的很慢第二部分 KIEKIE是Drools和JBPM的共享核心，它为构建、部署以及资源组织提供了统一的方法论以及统一的编程模型
+4 KIE4.1 概述4.1.1 项目整体分析　　在Drools和JBPM整合过程中，最简单的组名为“D">
+<meta property="og:type" content="article">
 <meta property="og:title" content="PowerPiggy 博客">
-<meta property="og:url" content="http://powerpiggy.github.io/index.html">
+<meta property="og:url" content="http://powerpiggy.github.io/2016/07/18/Drools6官方文档4/index.html">
 <meta property="og:site_name" content="PowerPiggy 博客">
+<meta property="og:description" content="title: Drools 6官方文档 4date: 2016-07-10 19:07:43
+description: 学习drools6 顺便翻译，英语很不好，翻译的很慢第二部分 KIEKIE是Drools和JBPM的共享核心，它为构建、部署以及资源组织提供了统一的方法论以及统一的编程模型
+4 KIE4.1 概述4.1.1 项目整体分析　　在Drools和JBPM整合过程中，最简单的组名为“D">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16770907/3a0a1978-4881-11e6-849f-185c1413b847.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16828227/6d66f8fa-49c0-11e6-9797-fb99c842490e.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16828381/c59b8ddc-49c1-11e6-8b36-d61a17dd674c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16828744/41ad39ea-49c5-11e6-963e-3988a4688e0e.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16830833/dca76c3c-49d3-11e6-99c3-c4b210658495.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16843838/6ed1e1fa-4a15-11e6-9b70-013be1ec2077.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16876470/8af4f0ea-4ad6-11e6-9430-53711d9d66ca.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16876913/73db83c2-4ad8-11e6-8f21-2d39cadf8703.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16893781/151e0272-4b75-11e6-9865-d371605de22b.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16893816/26d90632-4b76-11e6-921e-9fbd8b5a561f.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16893916/09f72d84-4b79-11e6-9017-bd05e0611340.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16893954/1d729690-4b7a-11e6-8a96-0cf594f6c566.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16893973/c34c53f8-4b7a-11e6-9284-4070e80dcda7.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16876470/8af4f0ea-4ad6-11e6-9430-53711d9d66ca.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16898033/d51451a6-4bf9-11e6-9d04-204fa37c912c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16876913/73db83c2-4ad8-11e6-8f21-2d39cadf8703.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16898887/9d4cec62-4c1f-11e6-8e99-d9c161bc3b20.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899406/2321cc80-4c35-11e6-9bb6-8c43edd1f276.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899414/b9c257ae-4c35-11e6-8aef-855e861f4226.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899510/6a2228f6-4c39-11e6-8ee1-2cec4110828b.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899557/16277f1a-4c3b-11e6-80a3-00b495b3c182.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899626/330c4e88-4c3d-11e6-9140-bd5074af037d.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16899632/5da870d6-4c3d-11e6-9472-034e65238d75.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16904948/5b246b14-4cd1-11e6-96a9-d7b80c547cd5.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16905352/52aea3ea-4cd7-11e6-95c2-dab92a026533.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16910921/1132c676-4d0e-11e6-8a11-c8a55f6db262.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/4536249/16910928/19fc5006-4d0e-11e6-8103-0bab5abeccc5.png">
+<meta property="og:updated_time" content="2016-07-18T10:58:06.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PowerPiggy 博客">
+<meta name="twitter:description" content="title: Drools 6官方文档 4date: 2016-07-10 19:07:43
+description: 学习drools6 顺便翻译，英语很不好，翻译的很慢第二部分 KIEKIE是Drools和JBPM的共享核心，它为构建、部署以及资源组织提供了统一的方法论以及统一的编程模型
+4 KIE4.1 概述4.1.1 项目整体分析　　在Drools和JBPM整合过程中，最简单的组名为“D">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/4536249/16770907/3a0a1978-4881-11e6-849f-185c1413b847.png">
   
     <link rel="alternate" href="/atom.xml" title="PowerPiggy 博客" type="application/atom+xml">
   
@@ -59,9 +97,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Drools6官方文档4" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Drools6官方文档4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/18/Drools6官方文档4/" class="article-date">
   <time datetime="2016-07-18T10:55:08.279Z" itemprop="datePublished">2016-07-18</time>
@@ -674,219 +710,19 @@ java.naming.factory.initial=bitronix.tm.jndi.BitronixInitialContextFactory
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Drools6官方文档1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/10/Drools6官方文档1/" class="article-date">
-  <time datetime="2016-07-10T15:07:27.169Z" itemprop="datePublished">2016-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: Drools 6官方文档 1<br>date: 2016-07-10 19:07:43</p>
-<h2 id="description-学习drools6-顺便翻译，英语很不好，翻译的很慢"><a href="#description-学习drools6-顺便翻译，英语很不好，翻译的很慢" class="headerlink" title="description: 学习drools6 顺便翻译，英语很不好，翻译的很慢"></a>description: 学习drools6 顺便翻译，英语很不好，翻译的很慢</h2><p>#　Drools 6官方文档 1</p>
-<h2 id="1-总体介绍"><a href="#1-总体介绍" class="headerlink" title="1 总体介绍"></a>1 总体介绍</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>　　这是一个繁忙的一年，因为最后的5.x版本发布后，6.0版本发生了大量的变化。</p>
-<p>　　在5．X系列的最大的抱怨之一是缺乏简单的部署方法。使用Drools和JBPM的机制是非常灵活的，但它太灵活，以至于反而有些复杂。6.x的一个重要的方面就是是简化系统的构建、部署和加载等方面复杂度。构建和部署使用Maven,使用约定和配置取代编程方式，并提供默认的完整的最小化配置。</p>
-<p>　　工作台（workbench）已经重建，受到Eclipse的启发，通过插件（plugin）和视图（perspectives）等方式，提供一个灵活的更好的集成解决方案。基本的工作台已经分拆成一个叫做uberfire独立的项目，所以任何人都可以建立高质量的基于Web的工作平台。从长期来看这将便于用户定制的Drools和JBPM的安装。</p>
-<p>　　Git的替代JCR作为内容存储库，提供了快速的可伸缩的后端内容存储，并且拥有强大的工具支持。近一个时期以来，内容存储从简单的数据库转移聚焦到存储一切文本文件，甚至元数据只是一个文件。数据库是只是为了提供快速索引，并通过Lucene搜索。这将使内容仓库可以进行同步并发布，比如发布到GitHub等。</p>
-<p>　　jBPM的有了极大的加强了，这要归功对Polymita收购，任务，表单设计器，对象建模，执行服务器和运行管理等都完全融入新的工作台。</p>
-<p>　　OptaPlanner现在是一个顶级项目，并获得全职的关注。</p>
-<p>　　在一个新的总称，KIE（Knowledge Is Everything　知识就是一切）之下，已经将我们的相关技术结合在一起。并且成为我们各个项目的核心。让我们拭目以待。</p>
-<h3 id="1-2-如何参与项目"><a href="#1-2-如何参与项目" class="headerlink" title="1.2 如何参与项目"></a>1.2 如何参与项目</h3><p>　　我们经常被问“我如何参与进来。”幸运的是，答案很简单，只写一些代码，并提交吧:)，没有其他的特殊要求。下面是我们提供的工具的概述和“工作流程”，还有一些一些一般性的建议。</p>
-<p>　　如果你贡献了很好的工作，不要忘记发布在博客吧:)</p>
-<h4 id="1-2-1-在jboss-org上注册用户"><a href="#1-2-1-在jboss-org上注册用户" class="headerlink" title="1.2.1 在jboss.org上注册用户"></a>1.2.1 在jboss.org上注册用户</h4><p>　　在Jboss.org上注册用户，你就可以访问JBoss Wiki，论坛以及JIRA ，请到<a href="http://www.jboss.org/" target="_blank" rel="external">http://www.jboss.org/</a> 点击注册。</p>
-<h4 id="1-2-2-签署贡献者协议"><a href="#1-2-2-签署贡献者协议" class="headerlink" title="1.2.2 签署贡献者协议"></a>1.2.2 签署贡献者协议</h4><h4 id="1-2-3-通过JIRA提交问题"><a href="#1-2-3-通过JIRA提交问题" class="headerlink" title="1.2.3 通过JIRA提交问题"></a>1.2.3 通过JIRA提交问题</h4><h4 id="1-2-4-在GitHub上Fork代码"><a href="#1-2-4-在GitHub上Fork代码" class="headerlink" title="1.2.4 在GitHub上Fork代码"></a>1.2.4 在GitHub上Fork代码</h4><h4 id="1-2-5-编写测试"><a href="#1-2-5-编写测试" class="headerlink" title="1.2.5 编写测试"></a>1.2.5 编写测试</h4><p>　　在编写测试时，尽量使他们最小化的，自包含的。我们宁愿保持测试中的DRL片段，它能够被快速审查。使用一个字符串表达大量的规则是不切实际的，应该把他们编写在多个分离的DRL文件中，如果你的测试需要模型对象，请使用在其他测试中已经存在的模型对象，比如人、奶酪、订单等，如果已经存在的模型对象无法满足你的需要，请优先考虑扩展已有的模型对象，最后才是添加新的模型对象。</p>
-<p>　　MiscTest上提供了大量的测试，通过其或许你可以获得一些灵感。　　<br>　　下边是一个测试样例　　<br>　　<a href="https://github.com/droolsjbpm/drools/blob/master/drools-compiler/src/test/java/org/drools/integrationtests/MiscTest.java" target="_blank" rel="external">https://github.com/droolsjbpm/drools/blob/master/drools-compiler/src/test/java/org/drools/integrationtests/MiscTest.java</a><br>　<img src="https://cloud.githubusercontent.com/assets/4536249/16712186/980783de-46b1-11e6-9f1c-feb7b2e86dd5.png" alt=""></p>
-<h4 id="1-2-6-用正确的提交约定"><a href="#1-2-6-用正确的提交约定" class="headerlink" title="1.2.6 用正确的提交约定"></a>1.2.6 用正确的提交约定</h4><h4 id="1-2-7-提交Pull请求"><a href="#1-2-7-提交Pull请求" class="headerlink" title="1.2.7 提交Pull请求"></a>1.2.7 提交Pull请求</h4><h3 id="1-3安装"><a href="#1-3安装" class="headerlink" title="1.3安装"></a>1.3安装</h3><h4 id="1-3-1安装和使用"><a href="#1-3-1安装和使用" class="headerlink" title="1.3.1安装和使用"></a>1.3.1安装和使用</h4><p>　　Drools提供基于Eclipse的IDE(当然这个是可选的)，而且在Java1.5上即可运行。<br>　　开始的最简单方法是下载和安装Eclipse插件， 这首先需要安装了Eclipse GEF框架（见下文，如果你还没有安装GEF）。这个插件可以为你解决所有的依赖问题，你可以方便地创建规则项目，插件可以为你完成相关的所有事情，相关内容请参看规则工作台和IDE，安装插件只需要下载插件压缩文件，并解压到Eclise的plugins目录下。<br>这将为你提供你需要得到持续的所有依赖：你可以简单地创建一个新的规则项目，一切都会为你完成。请参阅有关规则工作台和IDE查找有关此详细说明的章节。安装Eclipse插件通常作为解压文件到你的Eclipse插件目录。</p>
-<p>　　使用Eclipse插件并不是必需的。规则文件只是文本格式（或电子表格视情况而定），而IDE（也称为规则工作台）仅仅是为了方便。可以使用各种方法集成规则引擎，不存在一刀切的方法。</p>
-<p>　　或者，你可以下载二进制发行版，并且将其中的Jar文件加入到你的项目的classpath中。</p>
-<h5 id="1-3-1-1-Drools的Jar以及依赖"><a href="#1-3-1-1-Drools的Jar以及依赖" class="headerlink" title="1.3.1.1 Drools的Jar以及依赖"></a>1.3.1.1 Drools的Jar以及依赖</h5><p>　　Drools中被分解成几个模块，有些模块是规则开发/编译期间所需的，有些是在运行时必需的。在许多情况下，人们只是想包括在运行时所有的依赖，而不包括开发／编译模块。drools这样分解模块，可以让你有最大的灵活性。不过，有些人可能更喜欢有自己的“运行环境”精简到最低限度，他们会以二进制形式部署规则，这也是可能的。核心运行时间引擎可以是相当紧凑，而且只需要跨3JAR文件数100千字节。</p>
-<p>  以下是JBoss Drools的重要库的说明。</p>
-<p>　　knowledge-api.jar　提供接口定义和工厂。它还有助于清楚地表明了什么是用户API和什么是引擎API。</p>
-<p>　　knowledge-internal-api.jar　提供内部接口和工厂。</p>
-<p>　　drools-core.jar 这是核心引擎，运行时组件。同时包含RETE引擎和LEAPS引擎。当你使用预编译的规则（并通过打包或RuleBase部署）时，这是唯一的运行时依赖。 </p>
-<p>　　drools-compiler.jar含编译器/构建组件，可以将规则源代码编译成可执行的规则库。通常将此组件包含到程序的运行环境中，但是如果你采用预编译规则，就不需要将此组件加入到运行环境中。<br>　　<br>　　drools-jsr94.jar　这是JSR-94兼容的实现，这基本上是基于Drools的编译器组件的包装层。注意，由于对JSR-94规范的性质，并非所有的功能都容易通过该接口导出。在某些情况下，更加方便的方式是直接使用Drools的API，但是在某些环境中还是需要JSR-94的兼容实现的。</p>
-<p>　　drools-decisiontables.jar　这是决策表“编译”组件，它使用Drools的编译器组件，支持Excel和CSV输入格式。<br>　　<br>　　上面这些组件还依赖相当多的其他组件，其中大部分drools-compiler.jar，drools-jsr94.jar和drools-decisiontables.jar的依赖。比如“POI”提供电子表格的解析能力，而“ANTLR”，提供规则语言自身的解析能力。</p>
-<p>　　如果你在J2EE或servlet容器中使用Drools，你遇到“JDT”的classpath问题，那么你可以切换到JANINO编译器。设置系统属性“drools.compiler”：例如：-Ddrools.compiler= JANINO。</p>
-<p>　　要想了解最新release版本的依赖，可以查看Release的POM文件，这个文件可以在Maven仓库中找到。</p>
-<h5 id="1-3-1-2使用Maven、Gladle、Ivy、Buildr和Ant"><a href="#1-3-1-2使用Maven、Gladle、Ivy、Buildr和Ant" class="headerlink" title="1.3.1.2使用Maven、Gladle、Ivy、Buildr和Ant"></a>1.3.1.2使用Maven、Gladle、Ivy、Buildr和Ant</h5><p>　　这些Jar已经发布到Maven的中心仓库中（the central Maven repository）， 在the JBoss Maven repository也可以找到。<br>　　<br>　　如果你使用Maven，可以在你的项目pom.xml添加KIE和Drools依赖如下：</p>
-<pre><code>&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-      &lt;dependency&gt;
-    &lt;groupId&gt;org.drools&lt;/groupId&gt;
-    &lt;artifactId&gt;drools-bom&lt;/artifactId&gt;
-    &lt;type&gt;pom&lt;/type&gt;
-    &lt;version&gt;...&lt;/version&gt;
-    &lt;scope&gt;import&lt;/scope&gt;
-      &lt;/dependency&gt;
-      ...
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-  &lt;dependencies&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.kie&lt;/groupId&gt;
-      &lt;artifactId&gt;kie-api&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.drools&lt;/groupId&gt;
-      &lt;artifactId&gt;drools-compiler&lt;/artifactId&gt;
-      &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    ...
-  &lt;dependencies&gt;
-</code></pre><p>　　Gradle, Ivy和Buildr的方法与此相似，要查看最新的版本，请检查Maven仓库。<br>　　<br>　　如果你还在使用Ant（不使用ivy），解压并复制下载的zip中二进制文件目录中所有的JAR文件并手动检查您的CLASSPATH不包含重复的JAR文件。</p>
-<h5 id="1-3-1-3运行时"><a href="#1-3-1-3运行时" class="headerlink" title="1.3.1.3运行时"></a>1.3.1.3运行时</h5><p>　　这里所说的“运行时”是指你使用编译好的二进制形式（无论是KnowledgePackage对象或KnowledgeBase对象）发布规则。这是一个可选功能，可以让你保持你的运行时很轻。您可以使用Drools的编译器先编译产生规则包，然后将它们部署到运行系统。这个运行时系统只需要的drools-core.jar和knowledge-api.jar，用于执行。这是一个可选的部署模式，许多人并不需要这样“调整”自己的应用程序，但它是在某些特定环境下的理想选择。</p>
-<h5 id="1-3-1-4安装IDE-规则工作台"><a href="#1-3-1-4安装IDE-规则工作台" class="headerlink" title="1.3.1.4安装IDE (规则工作台)"></a>1.3.1.4安装IDE (规则工作台)</h5><p>　　规则工作台（用于Eclipse）要求您使用Eclipse的3.4或更高版本，以及Eclipse　GEF　3.4或更高版本。你可以通过下载插件或使用更新站点安装它。</p>
-<p>　　另一种选择是使用JBoss的IDE，它配备了所有插件要求预包装。</p>
-<h6 id="1-3-1-4-1-安装GEF"><a href="#1-3-1-4-1-安装GEF" class="headerlink" title="1.3.1.4.1 安装GEF"></a>1.3.1.4.1 安装GEF</h6><p>略</p>
-<h6 id="1-3-1-4-2-用Zip方式安装GEF"><a href="#1-3-1-4-2-用Zip方式安装GEF" class="headerlink" title="1.3.1.4.2 用Zip方式安装GEF"></a>1.3.1.4.2 用Zip方式安装GEF</h6><p>略</p>
-<h6 id="1-3-1-4-3-用Zip方式安装Drools插件"><a href="#1-3-1-4-3-用Zip方式安装Drools插件" class="headerlink" title="1.3.1.4.3 用Zip方式安装Drools插件"></a>1.3.1.4.3 用Zip方式安装Drools插件</h6><p>　　从下面的链接下载Drools的Eclipse IDE的插件。解压缩在你的Eclipse文件夹，（不只是复制文件，而且还需要将其解压缩，这样插件的JAR文件在解压至Eclipse的插件目录（plugins）中），并重新启动Eclipse。</p>
-<p>  <a href="http://www.drools.org/download/download.html" target="_blank" rel="external">http://www.drools.org/download/download.html</a><br>　　<br>　　要检查是否安装成功，尝试打开Drools的视图：在你的Eclipse窗口的右上角点击“打开透视图”按钮，选择“其他…”，并挑选Drools的视图。如果你无法找到Drools的视图，可能如下问题之一，安装可能不成功。安如下步骤进行检查：你的Eclipse版本是否正确（3.4.x）？你已经安装了Eclipse GEF（检查插件目录是否存在org.eclipse.gef<em>3.4.jar）？您是否正确提取的Drools Eclipse插件（检查插件目录是否存在org.drools.eclipse</em> *.JAR的）？如果你不能找到问题，尝试联系我们（例如，在IRC或用户邮件列表），更多信息也可以查看我们的主页：</p>
-<p>　　<a href="http://www.drools.org/" target="_blank" rel="external">http://www.drools.org/</a></p>
-<h6 id="1-3-1-4-4-Drools运行时"><a href="#1-3-1-4-4-Drools运行时" class="headerlink" title="1.3.1.4.4 Drools运行时"></a>1.3.1.4.4 Drools运行时</h6><p>　　在使用Eclipse IDE时，可以指定Drools的运行时，所谓Drools的运行时，就是特定Drools版本的一组Jar文件，你需要在Eclipse中指定默认的Drools运行时，并且每个项目也可以单独设置Drools运行时，项目中的设置将覆盖Eclipse的默认设置。</p>
-<p>####### 1.3.1.4.4.1 定义Drools运行时<br>　　你需要为Eclipse定义Drools运行时，打开Eclipse preferences ，找到Drools，选择“Installed Drools runtimes”，在对话框的右侧会显示当前已经定义的Drools运行时，如下图（还未定义任何的Drools运行时）<br><img src="https://cloud.githubusercontent.com/assets/4536249/16754471/96b39fde-4825-11e6-9a9f-154fdf1fa0bd.png" alt=""></p>
-<p>　　要定义一个新的Drools运行时，点击添加按钮。如下图所示的对话框会弹出，输入运行时的名称和运行时文件所在的目录。<br><img src="https://cloud.githubusercontent.com/assets/4536249/16754523/fd8d345e-4825-11e6-9626-f5536d6a2652.png" alt=""></p>
-<p>　　这里有两种做法。</p>
-<p>　　一是如果你想直接使用默认的Drools运行时，你可以点击“Create　ａ　New　Drools 5 Runtime” ，然后会弹出一个路径选择框，在这个对话框中，你可以选择运行时所在的目录，Eclipse 插件会自动下载运行时所需要的文件文件到这个目录中。</p>
-<p>　　二是如果你想使用Drools的指定版本，你需要自己拷贝Drools的Jar文件以及相关依赖到指定目录下，并在上面的对话框中进行设置。</p>
-<p>　　在输入完毕后，单击确定按钮，新创建的运行时间应该显示在Drools运行列表中，如下图所示。在新创建的运行时前点击复选框以使其成为默认的Drools运行时。那些没有指定自己的Drools运行时的项目将使用默认的Drools运行时。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16754719/ffde8f12-4827-11e6-80eb-4f71a7e81d34.png" alt=""></p>
-<p>　　您可以根据需要添加各种Drools运行时。例如，下面的屏幕截图显示，其中定义了３个运行时：Drools的4.0.7运行时，Drools的5.0.0运行和Drools的5.0.0.SNAPSHOT运行时。 Drools的5.0.0运行时被选定为默认的运行时。</p>
-<p>　　需要注意的是，如果你调整了默认的运行时，则需要重新启动Eclipse，以使使用默认运行时的项目可以更新相关的路径。</p>
-<p>####### 1.3.1.4.4.2 为你的Drools项目选择运行时<br>　　当你使用Drools项目向导创建新项目，或者将一个已有项目转换成Drools项目（在Drool视图中，右击已有项目选择“Convert to Drools Project”）时，Eclipse插件会自动将Drools运行时所需要的Jar包加入到项目的ClassPath中。</p>
-<p>　　当创建一个新的Drools项目，Eclipse插件会为项目自动使用默认的Drools运行时，当然你也可以自己制定Drools运行时，在Drools项目向导的最后一步，取消“Use default Drools runtime”　的选择框的选择，并在下拉框中选择适合你的Drools运行时。如果你点击“Configure workspace settings …”会显示当前已经安装的Drools运行时，你也可以在这里添加新的Drools运行时。<br><img src="https://cloud.githubusercontent.com/assets/4536249/16758811/7bbabe8a-4846-11e6-95d0-14196c8ab100.png" alt=""></p>
-<p>　　你也可以在任何时候在项目属性中修改Drools运行时，打开项目属性，选择Drools，如下图，选中＂Enable project specific settings＂，并且在下面的列表框中选择项目需要的运行时，你也可以点击＂onfigure workspace settings …＂，调整或添加新的运行时．如果你不选择＂Enable project specific settings＂，则项目会使用默认的运行时．<br><img src="https://cloud.githubusercontent.com/assets/4536249/16758992/5adaf76a-4847-11e6-8194-93f6d82728c6.png" alt=""> </p>
-<h4 id="1-3-2-编译源码"><a href="#1-3-2-编译源码" class="headerlink" title="1.3.2 编译源码"></a>1.3.2 编译源码</h4><h5 id="1-3-2-1-获取源码"><a href="#1-3-2-1-获取源码" class="headerlink" title="1.3.2.1 获取源码"></a>1.3.2.1 获取源码</h5><p>　　在JBoss Maven repository中可以找到源代码的Jar包，同样的源码包也存在于下载的Zip文件中，如果你想编译源码，强烈建立你到我们的源码服务器上下载源码，我们使用GitHub作为源码服务器。</p>
-<p>　　Drools和Jbpm使用Git进行源码管理，并托管于GitHub。</p>
-<p>　　地址为：<a href="https://github.com/droolsjbpm" target="_blank" rel="external">https://github.com/droolsjbpm</a></p>
-<p>　　你可以在GitHub上Fork源码，并修改这些源码，并可以选择与我们分享这些修改，并合并进最新的版本中。如果想了解Git的更多信息，可以选择阅读Git的一些免费书籍。</p>
-<h5 id="1-3-2-2-编译这些源码"><a href="#1-3-2-2-编译这些源码" class="headerlink" title="1.3.2.2 编译这些源码"></a>1.3.2.2 编译这些源码</h5><p>　　从本质上说，编译这些源码很容易，例如你想编译guvnor项目。</p>
-<pre><code>$ git clone git@github.com:droolsjbpm/guvnor.git
-...
-$ cd guvnor
-$ mvn clean install -DskipTests -Dfull
-...
-</code></pre><p>当然如果你想从源码进行构建，还是会存在很多编译的陷阱，请参阅Drools编译引导的README的信息。</p>
-<h4 id="1-3-3-使用Eclise查看源码"><a href="#1-3-3-使用Eclise查看源码" class="headerlink" title="1.3.3 使用Eclise查看源码"></a>1.3.3 使用Eclise查看源码</h4><p>#####　1.3.3.1 导入Eclipse项目<br>　　Drools源码中提供Eclipse的项目文件，所以这些项目也可以直接导入到Eclipse中，将Eclise的workspace设置到源码根目录，就可以导入这些项目。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764768/bf6a5ade-4862-11e6-9d95-3484dd23ee04.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764781/d8f31a54-4862-11e6-90bc-8a7aa05ecd39.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764785/e09cf824-4862-11e6-8096-4a39aa8a0bb5.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764796/e7a27ed2-4862-11e6-8152-23baa9a943eb.jpg" alt=""></p>
-<p>　　然后使用MVN下载这些项目所需要的依赖包，并保存至本地的Maven仓库中，Eclipse自己无法找到这些依赖，你告诉她仓库在哪里，即设置M2_REPO路径变量。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764955/f07adba2-4863-11e6-9020-2d5c986da591.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764958/f5994d80-4863-11e6-9159-af8e6d3a1e47.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764968/fae4bd06-4863-11e6-956e-d579735b6fde.jpg" alt=""></p>
-<p><img src="https://cloud.githubusercontent.com/assets/4536249/16764970/010eacbe-4864-11e6-990f-5c35d078447a.jpg" alt=""></p>
+  
+    <a href="/2016/07/10/Drools6官方文档1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/10/Drools6官方文档1/" data-id="ciqrx4lwl0000q0ks3fq46ug2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/09/hello-world/" class="article-date">
-  <time datetime="2016-07-09T10:01:18.707Z" itemprop="datePublished">2016-07-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/09/hello-world/" data-id="ciqrx4lxc0007q0kskfuv8xtm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Hexo搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/03/03/使用Hexo搭建个人博客/" class="article-date">
-  <time datetime="2014-03-03T11:07:43.000Z" itemprop="datePublished">2014-03-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Blog/">Blog</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/03/使用Hexo搭建个人博客/">使用Hexo搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#Test#</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2014/03/03/使用Hexo搭建个人博客/" data-id="ciqrx4lwu0002q0ks6gcphzv0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
