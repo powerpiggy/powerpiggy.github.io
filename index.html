@@ -663,12 +663,410 @@ java.naming.factory.initial=bitronix.tm.jndi.BitronixInitialContextFactory
 <p><img src="https://cloud.githubusercontent.com/assets/4536249/16910921/1132c676-4d0e-11e6-8a11-c8a55f6db262.png" alt=""></p>
 <p>Figure 4.27. Deployment Overview</p>
 <p><img src="https://cloud.githubusercontent.com/assets/4536249/16910928/19fc5006-4d0e-11e6-8103-0bab5abeccc5.png" alt=""></p>
-<h4 id="4-2-6-构建、部署以及使用的例子"><a href="#4-2-6-构建、部署以及使用的例子" class="headerlink" title="4.2.6 构建、部署以及使用的例子"></a>4.2.6 构建、部署以及使用的例子</h4><p>略</p>
+<h4 id="4-2-6-构建、部署以及使用的例子"><a href="#4-2-6-构建、部署以及使用的例子" class="headerlink" title="4.2.6 构建、部署以及使用的例子"></a>4.2.6 构建、部署以及使用的例子</h4><p>　　学习系统的方法是研究例子，“drools-examples-api”项目中有大量的例子，你可以在GitHub中找到。</p>
+<p><a href="https://github.com/droolsjbpm/drools/tree/6.0.x/drools-examples-api" target="_blank" rel="external">https://github.com/droolsjbpm/drools/tree/6.0.x/drools-examples-api</a></p>
+<p>　　研究例子的顺序很重要，从简单的例子（大多数选项都使用默认值），到复杂的例子，一步步研究。</p>
+<p>　　The Deploy use cases shown below all involve mvn install. Remote deployment of JARs in Maven is well covered in Maven literature. Utilize refers to the initial act of loading the resources and providing access to the KIE runtimes. Where as Run refers to the act of interacting with those runtimes.</p>
+<h5 id="4-2-6-1-Default-KieSession"><a href="#4-2-6-1-Default-KieSession" class="headerlink" title="4.2.6.1 Default KieSession"></a>4.2.6.1 Default KieSession</h5><p>  Project: default-kesession.</p>
+<p>　　概述: 空的 kmodule.xml文件,KieModule 包含所有的资源在单一的KieBase，下面的例子展示从classpath上检索默认的KieSession。</p>
+<p>　　一个空的kmodule.xml会生成单个KieBase，这个KieBase包含resources路径中的所有文件，可以是DRL，BPMN2，XLS等，单一的KieBase也包含默认的单一的KieSession，默认的意味着不需要使用它们的名称，就可以创建它们。  </p>
+<pre><code>Example 4.37. Author - kmodule.xml
+
+&lt;kmodule xmlns=&quot;http://www.drools.org/xsd/kmodule&quot;&gt; &lt;/kmodule&gt;
+</code></pre><p>–</p>
+<pre><code>Example 4.38. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　注意：这里的xmlns=”<a href="http://www.drools.org/xsd/kmodule" target="_blank" rel="external">http://www.drools.org/xsd/kmodule</a>“　改成xmlns=”<a href="http://jboss.org/kie/6.0.0/kmodule" target="_blank" rel="external">http://jboss.org/kie/6.0.0/kmodule</a>“　才可以顺利运行，不知道其他环境是否也需要这样。</p>
+<p>　　ks.getKieClasspathContainer()返回KieContainer，其包含部署到环境classpath上的KieBase，kContainer.newKieSession()创建默认的KieSession，这里需要注意的是，你不需要为了创建KieSession而查找KieBase，KieSession知道需要与那个KieBase相关联，在这个例子里使用默认的KieBase。</p>
+<pre><code>Example 4.39. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieContainer kContainer = ks.getKieClasspathContainer();
+
+KieSession kSession = kContainer.newKieSession();
+kSession.setGlobal(&quot;out&quot;, out);
+kSession.insert(new Message(&quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;));
+kSession.fireAllRules();            
+</code></pre><h5 id="4-2-6-2-命名的KieSession"><a href="#4-2-6-2-命名的KieSession" class="headerlink" title="4.2.6.2 命名的KieSession"></a>4.2.6.2 命名的KieSession</h5><p>  Project: named-kiesession.<br>　　概述：kmodule.xml有一个命名的KieBase和一个命名的KieSession，下面的例子展示从classpath上检索命名的KieSession。</p>
+<p>　　kmodule.xml 生成一个名为’kbase1’的KieBase,其中包括了在resources路径中找到的所有文件，这些文件可能是DRL、BPMN2，XLS 等，一个名为‘kession1’的KieSession与这个KieBase相关联。</p>
+<pre><code>Example 4.40. Author - kmodule.xml
+
+&lt;kmodule xmlns=&quot;http://www.drools.org/xsd/kmodule&quot;&gt;
+    &lt;kbase name=&quot;kbase1&quot;&gt;
+        &lt;ksession name=&quot;ksession1&quot;/&gt;
+    &lt;/kbase&gt;
+&lt;/kmodule&gt;
+</code></pre><p>-</p>
+<pre><code>Example 4.41. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　ks.getKieClasspathContainer()返回KieContainer，其包含部署到环境classpath上的KieBase，这回KieSession叫做’ksession1’,你不需要先获取KieBase，系统知道ksession1应该与那个KieBase相关联。</p>
+<pre><code>Example 4.42. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieContainer kContainer = ks.getKieClasspathContainer();
+
+KieSession kSession = kContainer.newKieSession(&quot;ksession1&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+kSession.insert(new Message(&quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;));
+kSession.fireAllRules();
+</code></pre><p>　　##### 4.2.6.3 KieBase Inheritence</p>
+<p>　　Project: kiebase-inclusion.</p>
+<p>　　概述：kmodule.xml中，一个KieBase可以包括另一个KieBase的资源（在其他的KieModule中），在这个例子中，它继承了’name-kiesession’ 例子中的named KieBase，被包含的KieBase可以在当前的KieModule中，也可以在其他pom.xml依赖的KieModule中。</p>
+<p>　　kmodule.xml 生成一个名为’kbase2’的KieBase,其中包括了在resources路径中找到的所有文件，这些文件可能是DRL、BPMN2，XLS 等，而且它使用‘includes’属性继承于kbase1，所以它同时也包括KieBase ‘kbase1’的所有的资源。名为‘ksession2’的KieSession与KieBase相关联。</p>
+<pre><code>Example 4.43. Author - kmodule.xml
+
+&lt;kbase name=&quot;kbase2&quot; includes=&quot;kbase1&quot;&gt;
+    &lt;ksession name=&quot;ksession2&quot;/&gt;
+&lt;/kbase&gt;
+</code></pre><p>　　这个例子需要前一个例子“named-kiesession”，“named-kiesession”　需要先被编译，并且被安装与Maven　本地仓库，一旦安装与本地仓库中后，就可以在这个项目中，使用Maven的<dependencies>标签声明依赖。</dependencies></p>
+<pre><code>Example 4.44. Author - pom.xml
+
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+     xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.drools&lt;/groupId&gt;
+    &lt;artifactId&gt;drools-examples-api&lt;/artifactId&gt;
+    &lt;version&gt;6.0.0/version&gt;
+  &lt;/parent&gt;
+
+  &lt;artifactId&gt;kiebase-inclusion&lt;/artifactId&gt;
+  &lt;name&gt;Drools API examples - KieBase Inclusion&lt;/name&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+          &lt;groupId&gt;org.drools&lt;/groupId&gt;
+          &lt;artifactId&gt;drools-compiler&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+          &lt;groupId&gt;org.drools&lt;/groupId&gt;
+          &lt;artifactId&gt;named-kiesession&lt;/artifactId&gt;
+          &lt;version&gt;6.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre><p>　　一旦’named-kiesession’被编译，并且安装于本地Maven仓库，就可以编译测试安装当前项目。</p>
+<pre><code>Example 4.45. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　ks.getKieClasspathContainer()返回KieContainer，其包含部署到环境classpath上的KieBase，这回KieSession的名字为’ksession2’，你不需要先获取KieBase，ksession2知道与那个KieBase相关联，需要注意的是，这里有两个规则，一个是kbase2中的规则，另一个是它继承的kbase1中的规则。</p>
+<pre><code>Example 4.46. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieContainer kContainer = ks.getKieClasspathContainer();
+KieSession kSession = kContainer.newKieSession(&quot;ksession2&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+
+kSession.insert(new Message(&quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;));
+kSession.fireAllRules();
+
+kSession.insert(new Message(&quot;Dave&quot;, &quot;Open the pod bay doors, HAL.&quot;));
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-4-Multiple-KieBases"><a href="#4-2-6-4-Multiple-KieBases" class="headerlink" title="4.2.6.4. Multiple KieBases"></a>4.2.6.4. Multiple KieBases</h5><p>　　Project: ‘multiple-kbases.</p>
+<p>　　概述：kmodule.xml可以包括多个KieBase或KieSession的声明，KieBase的packages属性可以使其选择不同目录加载资源。</p>
+<p>　　kmodule.xml包换6个不同的KieBase，kbase1包含这个KieModule的所有资源，其他的几个KieBase使用packages属性各自指定了需要加载的资源路径，这里需要注意的是，路径可以使用通配符’*’，下面就是各个KieBase的例子。</p>
+<pre><code>Example 4.47. Author - kmodule.xml
+
+&lt;kmodule xmlns=&quot;http://www.drools.org/xsd/kmodule&quot;&gt;
+
+  &lt;kbase name=&quot;kbase1&quot;&gt;
+    &lt;ksession name=&quot;ksession1&quot;/&gt;
+  &lt;/kbase&gt;
+
+  &lt;kbase name=&quot;kbase2&quot; packages=&quot;org.some.pkg&quot;&gt;
+    &lt;ksession name=&quot;ksession2&quot;/&gt;
+  &lt;/kbase&gt;
+
+  &lt;kbase name=&quot;kbase3&quot; includes=&quot;kbase2&quot; packages=&quot;org.some.pkg2&quot;&gt;
+    &lt;ksession name=&quot;ksession3&quot;/&gt;
+  &lt;/kbase&gt;
+
+  &lt;kbase name=&quot;kbase4&quot; packages=&quot;org.some.pkg, org.other.pkg&quot;&gt;
+    &lt;ksession name=&quot;ksession4&quot;/&gt;
+  &lt;/kbase&gt;
+
+  &lt;kbase name=&quot;kbase5&quot; packages=&quot;org.*&quot;&gt;
+    &lt;ksession name=&quot;ksession5&quot;/&gt;
+  &lt;/kbase&gt;
+
+  &lt;kbase name=&quot;kbase6&quot; packages=&quot;org.some.*&quot;&gt;
+    &lt;ksession name=&quot;ksession6&quot;/&gt;
+  &lt;/kbase&gt;
+&lt;/kmodule&gt;
+</code></pre><p>-</p>
+<pre><code>Example 4.48. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　下面是一部分的例子程序，由于每个KieSession的测试方法都比较相似，所以没有全部列出来。</p>
+<pre><code>Example 4.49. Utilize and Run - Java
+
+@Test
+public void testSimpleKieBase() {
+    List&lt;Integer&gt; list = useKieSession(&quot;ksession1&quot;);
+    // no packages imported means import everything
+    assertEquals(4, list.size());
+    assertTrue( list.containsAll( asList(0, 1, 2, 3) ) );
+}
+
+//.. other tests for ksession2 to ksession6 here
+
+private List&lt;Integer&gt; useKieSession(String name) {
+    KieServices ks = KieServices.Factory.get();
+    KieContainer kContainer = ks.getKieClasspathContainer();
+    KieSession kSession = kContainer.newKieSession(name);
+
+    List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+    kSession.setGlobal(&quot;list&quot;, list);
+    kSession.insert(1);
+    kSession.fireAllRules();
+
+    return list;
+}
+</code></pre><h5 id="4-2-6-5-KieContainer-from-KieRepository"><a href="#4-2-6-5-KieContainer-from-KieRepository" class="headerlink" title="4.2.6.5 KieContainer from KieRepository"></a>4.2.6.5 KieContainer from KieRepository</h5><p>　　Project: kcontainer-from-repository</p>
+<p>　　概述：这个项目不包含kmodule.xml ，pom.xml也不依赖于其他的KieModule，而是使用java代码从Maven仓库中动态加载KieModule</p>
+<p>　　pom.xml中必须添加Kie-ci依赖，并且确定在运行时中maven是可用的，并且Maven的标准settings.xml 也可以使用。</p>
+<pre><code>Example 4.50. Author - pom.xml
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.drools&lt;/groupId&gt;
+    &lt;artifactId&gt;drools-examples-api&lt;/artifactId&gt;
+    &lt;version&gt;6.0.0&lt;/version&gt;
+  &lt;/parent&gt;
+  &lt;artifactId&gt;kiecontainer-from-kierepo&lt;/artifactId&gt;
+  &lt;name&gt;Drools API examples - KieContainer from KieRepo&lt;/name&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+          &lt;groupId&gt;org.kie&lt;/groupId&gt;
+          &lt;artifactId&gt;kie-ci&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre><p>-</p>
+<pre><code>Example 4.51. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　在上一个例子中KieContainer是从classpath中加载的，这个例子中通过ReleaseId来创建KieContainer，ReleaseId由Maven中的group id、artifact id以及version转化而来，也可以使用LATEST和SNAPSHOT版本。</p>
+<pre><code>Example 4.52. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+
+// Install example1 in the local Maven repo before to do this
+KieContainer kContainer = ks.newKieContainer(ks.newReleaseId(&quot;org.drools&quot;, &quot;named-kiesession&quot;, &quot;6.0.0-SNAPSHOT&quot;));
+
+KieSession kSession = kContainer.newKieSession(&quot;ksession1&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+
+Object msg1 = createMessage(kContainer, &quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;);
+kSession.insert(msg1);
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-6-Default-KieSession-from-File"><a href="#4-2-6-6-Default-KieSession-from-File" class="headerlink" title="4.2.6.6. Default KieSession from File"></a>4.2.6.6. Default KieSession from File</h5><p>　　Project: default-kiesession-from-file</p>
+<p>　　概述：KieModules可以直接从本地资源文件中进行加杂，加载的KieModule提供缺省的KieBase和KieSession</p>
+<p>　　kmodue.xml不存在，项目“default-kiesession”必须被先编译，生成的jar文件，可以当作引用文件。</p>
+<pre><code>Example 4.53. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　任何的 KieModule 可以从某个资源位置加载并添加到 KieRepository中，一旦部署到KieRepository中，就可以使用ReleaseId进行引用，这里需要注意的是，Maven和kie-ci不再被需要，It will not set up a transitive dependency parent classloader.</p>
+<pre><code>Example 4.54. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieRepository kr = ks.getRepository();
+
+KieModule kModule = kr.addKieModule(ks.getResources().newFileSystemResource(getFile(&quot;default-kiesession&quot;)));
+
+KieContainer kContainer = ks.newKieContainer(kModule.getReleaseId());
+
+KieSession kSession = kContainer.newKieSession();
+kSession.setGlobal(&quot;out&quot;, out);
+
+Object msg1 = createMessage(kContainer, &quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;);
+kSession.insert(msg1);
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-7-Named-KieSession-from-File"><a href="#4-2-6-7-Named-KieSession-from-File" class="headerlink" title="4.2.6.7. Named KieSession from File"></a>4.2.6.7. Named KieSession from File</h5><p>　　Project: named-kiesession-from-file</p>
+<p>　　概述：KieModules可以直接从本地资源文件中进行加杂，加载的KieModule提供命名的KieBase和KieSession</p>
+<p>　　kmodue.xml不存在，项目“name-kiesession”必须被先编译，生成的jar文件，可以当作引用文件。</p>
+<pre><code>Example 4.55. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　任何的 KieModule 可以从某个资源位置加载并添加到 KieRepository中，一旦部署到KieRepository中，就可以使用ReleaseId进行引用，这里需要注意的是，Maven和kie-ci不再被需要，It will not set up a transitive dependency parent classloader.</p>
+<pre><code>Example 4.56. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieRepository kr = ks.getRepository();
+
+KieModule kModule = kr.addKieModule(ks.getResources().newFileSystemResource(getFile(&quot;named-kiesession&quot;)));
+
+KieContainer kContainer = ks.newKieContainer(kModule.getReleaseId());
+
+KieSession kSession = kContainer.newKieSession(&quot;ksession1&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+
+Object msg1 = createMessage(kContainer, &quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;);
+kSession.insert(msg1);
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-8-KieModule-with-Dependent-KieModule"><a href="#4-2-6-8-KieModule-with-Dependent-KieModule" class="headerlink" title="4.2.6.8. KieModule with Dependent KieModule"></a>4.2.6.8. KieModule with Dependent KieModule</h5><p>　　Project: kie-module-form-multiple-files</p>
+<p>　　概述：以编程方式加载依赖的多个KieModule，不需要使用Maven。</p>
+<p>　　kmodue.xml不存在，项目“name-kiesession”和“kiebase-include”必须被先编译，生成的jar文件，可以当作引用文件。</p>
+<pre><code>Example 4.57. Build and Install - Maven
+
+mvn install
+</code></pre><p>-</p>
+<p>　　创建两个资源。一个是主要的 KieModule ‘exRes1’，另一个用于依赖 ‘exRes2’。即使并没有使用Kie-ci和Maven 用来解决依赖关系，但你可以手动指定依赖的 KieModules。</p>
+<pre><code>Example 4.58. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieRepository kr = ks.getRepository();
+
+Resource ex1Res = ks.getResources().newFileSystemResource(getFile(&quot;kiebase-inclusion&quot;));
+Resource ex2Res = ks.getResources().newFileSystemResource(getFile(&quot;named-kiesession&quot;));
+
+KieModule kModule = kr.addKieModule(ex1Res, ex2Res);
+KieContainer kContainer = ks.newKieContainer(kModule.getReleaseId());
+
+KieSession kSession = kContainer.newKieSession(&quot;ksession2&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+
+Object msg1 = createMessage(kContainer, &quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;);
+kSession.insert(msg1);
+kSession.fireAllRules();
+
+Object msg2 = createMessage(kContainer, &quot;Dave&quot;, &quot;Open the pod bay doors, HAL.&quot;);
+kSession.insert(msg2);
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-9-Programmaticaly-build-a-Simple-KieModule-with-Defaults"><a href="#4-2-6-9-Programmaticaly-build-a-Simple-KieModule-with-Defaults" class="headerlink" title="4.2.6.9. Programmaticaly build a Simple KieModule with Defaults"></a>4.2.6.9. Programmaticaly build a Simple KieModule with Defaults</h5><p>　　Project: kiemoduelmodel-example<br>　　概述：　可以使用程序化的方法创建KieModule，POM和model都是默认的，这是最快的方法，但是不能添加到Mave仓库中，供其他Module使用（指4.2.6.5中的方式）</p>
+<pre><code>Example 4.59. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　使用程序方法创建KieModule，It populates the model that represents the ReleaseId and kmodule.xml, and it adds the relevant resources. A pom.xml is generated from the ReleaseId.</p>
+<pre><code>Example 4.60. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieRepository kr = ks.getRepository();
+KieFileSystem kfs = ks.newKieFileSystem();
+
+kfs.write(&quot;src/main/resources/org/kie/example5/HAL5.drl&quot;, getRule());
+
+KieBuilder kb = ks.newKieBuilder(kfs);
+
+kb.buildAll(); // kieModule is automatically deployed to KieRepository if successfully built.
+if (kb.getResults().hasMessages(Level.ERROR)) {
+throw new RuntimeException(&quot;Build Errors:\n&quot; + kb.getResults().toString());
+}
+
+KieContainer kContainer = ks.newKieContainer(kr.getDefaultReleaseId());
+
+KieSession kSession = kContainer.newKieSession();
+kSession.setGlobal(&quot;out&quot;, out);
+
+kSession.insert(new Message(&quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;));
+kSession.fireAllRules();
+</code></pre><h5 id="4-2-6-10-Programmaticaly-build-a-KieModule-using-Meta-Models"><a href="#4-2-6-10-Programmaticaly-build-a-KieModule-using-Meta-Models" class="headerlink" title="4.2.6.10. Programmaticaly build a KieModule using Meta Models"></a>4.2.6.10. Programmaticaly build a KieModule using Meta Models</h5><p>　　Project: kiemoduelmodel-example</p>
+<p>　　概述：使用程序创建KieModule，创建其 kmodule.xml 元模型资源。</p>
+<pre><code>Example 4.61. Build and Install - Maven
+
+mvn install
+</code></pre><p>　　使用程序的方式生成 KieModule。It populates the model that represents the ReleaseId and kmodule.xml, as well as add the relevant resources. A pom.xml is generated from the ReleaseId.</p>
+<pre><code>Example 4.62. Utilize and Run - Java
+
+KieServices ks = KieServices.Factory.get();
+KieFileSystem kfs = ks.newKieFileSystem();
+
+Resource ex1Res = ks.getResources().newFileSystemResource(getFile(&quot;named-kiesession&quot;));
+Resource ex2Res = ks.getResources().newFileSystemResource(getFile(&quot;kiebase-inclusion&quot;));
+
+ReleaseId rid = ks.newReleaseId(&quot;org.drools&quot;, &quot;kiemodulemodel-example&quot;, &quot;6.0.0-SNAPSHOT&quot;);
+kfs.generateAndWritePomXML(rid);
+
+KieModuleModel kModuleModel = ks.newKieModuleModel();
+kModuleModel.newKieBaseModel(&quot;kiemodulemodel&quot;)
+.addInclude(&quot;kiebase1&quot;)
+.addInclude(&quot;kiebase2&quot;)
+.newKieSessionModel(&quot;ksession6&quot;);
+
+kfs.writeKModuleXML(kModuleModel.toXML());
+kfs.write(&quot;src/main/resources/kiemodulemodel/HAL6.drl&quot;, getRule());
+
+KieBuilder kb = ks.newKieBuilder(kfs);
+kb.setDependencies(ex1Res, ex2Res);
+kb.buildAll(); // kieModule is automatically deployed to KieRepository if successfully built.
+if (kb.getResults().hasMessages(Level.ERROR)) {
+    throw new RuntimeException(&quot;Build Errors:\n&quot; + kb.getResults().toString());
+}
+
+KieContainer kContainer = ks.newKieContainer(rid);
+
+KieSession kSession = kContainer.newKieSession(&quot;ksession6&quot;);
+kSession.setGlobal(&quot;out&quot;, out);
+
+Object msg1 = createMessage(kContainer, &quot;Dave&quot;, &quot;Hello, HAL. Do you read me, HAL?&quot;);
+kSession.insert(msg1);
+kSession.fireAllRules();
+
+Object msg2 = createMessage(kContainer, &quot;Dave&quot;, &quot;Open the pod bay doors, HAL.&quot;);
+kSession.insert(msg2);
+kSession.fireAllRules();
+
+Object msg3 = createMessage(kContainer, &quot;Dave&quot;, &quot;What&apos;s the problem?&quot;);
+kSession.insert(msg3);
+kSession.fireAllRules();
+</code></pre><h3 id="4-3-安全性"><a href="#4-3-安全性" class="headerlink" title="4.3 安全性"></a>4.3 安全性</h3><h4 id="4-3-1-Security-Manager"><a href="#4-3-1-Security-Manager" class="headerlink" title="4.3.1 Security Manager"></a>4.3.1 Security Manager</h4><p>  KIE是一个商业行为的建模和执行引擎，使用各种各样的例如规则、流程决策表等模型抽象。</p>
+<p>　　使用这些模型抽象可能来自于第三方，无论是同一公司的不同团队，还是合作公司，甚至是互联网上的匿名提供者。</p>
+<p>　　规则和流程为了完成自身的任务，需要执行代码，但是有必要对它们的运行进行一定的限制，例如不能允许创建类加载器（可以用于打开系统，并进行攻击），当然也不能允许调用System.exit()。</p>
+<p>　　Java平台提供了一个完善的、方便定义的安全框架，用户可以定义应用系统的安全策略，KIE平台利用这一框架，允许开发者定义用户提交的代码的安全策略，这些代码包括规则、流程、工作项等等。</p>
+<h5 id="4-3-1-1-如何定义KIE的安全策略"><a href="#4-3-1-1-如何定义KIE的安全策略" class="headerlink" title="4.3.1.1 如何定义KIE的安全策略"></a>4.3.1.1 如何定义KIE的安全策略</h5><p>　　规则和流程运行时需要的权限非常有限，但引擎本身需要执行许多复杂的操作才能工作，比如创建类加载器，读取系统属性，访问文件系统等等。</p>
+<p>　　一旦安全管理器被安装，它会根据定义的策略限制JVM中运行的代码，所以KIE系统定义了两个安全策略文件，一个用于引擎本身，一个用于被引擎执行的各种模型。</p>
+<p>　　一种简单的方法，是通过设置环境变量，给引擎一个相对宽松运行策略，给规则和流程一个严格限制的运行环境。</p>
+<p>　　关于策略文件的语法，请详见Java文档。</p>
+<p>　　<a href="http://docs.oracle.com/javase/6/docs/technotes/guides/security/PolicyFiles.html#FileSyntax" target="_blank" rel="external">http://docs.oracle.com/javase/6/docs/technotes/guides/security/PolicyFiles.html#FileSyntax</a></p>
+<p>　　引擎使用的宽松策略文件大致如下：</p>
+<pre><code>Example 4.63. A sample engine.policy file
+
+grant { 
+    permission java.security.AllPermission;
+}
+</code></pre><p>　　一个规则使用的策略文件例子如下：</p>
+<pre><code>Example 4.64. A sample rules.policy file
+grant { 
+    permission java.util.PropertyPermission &quot;*&quot;, &quot;read&quot;; 
+    permission java.lang.RuntimePermission &quot;accessDeclaredMembers&quot;; 
+}
+</code></pre><p>　　请注意：定义规则和流程的安全策略文件与其具体功能有关，根据更能不同，可能需要访问文件系统中的文件、数据库等权限。</p>
+<p>　　为了使用这些策略文件，必须将这些策略文件以参数的方式传递给JVM，这里有三个参数是必须的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-Djava.security.manager</td>
+<td style="text-align:center">打开安全管理器</td>
+</tr>
+<tr>
+<td style="text-align:center">-Djava.security.policy=&lt; jvm_policy_file&gt;</td>
+<td style="text-align:center">定义整个应用的安全策略文件，包括引擎</td>
+</tr>
+<tr>
+<td style="text-align:center">-Dkie.security.policy=&lt; kie_policy_file&gt;</td>
+<td style="text-align:center">定义规则和流程的安全策略文件</td>
+</tr>
+</tbody>
+</table>
+<p>　　例如：</p>
+<pre><code>java -Djava.security.manager -Djava.security.policy=global.policy -Dkie.security.policy=rules.policy foo.bar.MyApp
+</code></pre><p>　　注意：如果在容器里执行引擎，查阅你的容器文档，找到如何设置安全管理器，以及如何定义全局的安全策略。使用上面的方法定义kie安全策略。</p>
+<p>　　注意：Security Manager必须进行配置，否则kie.security.policy会被忽略。</p>
+<p>　　注意：安全管理器可能会对JVM的运行效率带来负面影响，对运行效率要求很高的应用可能并不适合使用安全管理器，一个替代的方法使用其他的安全方法对策略／流程进行安全检查。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/18/Drools6官方文档4/" data-id="ciqrx4lwq0001q0ksirsbl8yn" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2016/07/18/Drools6官方文档4/" data-id="cir0pg0om00054sksvdya2k45" class="article-share-link">Share</a>
       
       
     </footer>
@@ -789,7 +1187,7 @@ $ mvn clean install -DskipTests -Dfull
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/10/Drools6官方文档1/" data-id="ciqrx4lwl0000q0ks3fq46ug2" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2016/07/10/Drools6官方文档1/" data-id="cir0pg0op00074sksr22mancp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -834,7 +1232,7 @@ $ mvn clean install -DskipTests -Dfull
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2016/07/09/hello-world/" data-id="ciqrx4lxc0007q0kskfuv8xtm" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2016/07/09/hello-world/" data-id="cir0pg0oo00064sksqa4vo1k3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -875,7 +1273,7 @@ $ mvn clean install -DskipTests -Dfull
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://powerpiggy.github.io/2014/03/03/使用Hexo搭建个人博客/" data-id="ciqrx4lwu0002q0ks6gcphzv0" class="article-share-link">Share</a>
+      <a data-url="http://powerpiggy.github.io/2014/03/03/使用Hexo搭建个人博客/" data-id="cir0pg0np00004sksq92xwc09" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
